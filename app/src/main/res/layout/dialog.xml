@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+android:layout_width="match_parent"
+android:layout_height="match_parent"
+xmlns:app="http://schemas.android.com/apk/res-auto"
+android:orientation="vertical"
+android:layout_gravity="center"
+app:circularflow_radiusInDP="2dp"
+android:background="@color/white">
+
+
+<TextView
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:gravity="center"
+    android:layout_gravity="center"
+    android:textColor="@color/black"
+    android:textSize="40dp"
+    android:textStyle="bold"
+    android:text="ROUTES">
+
+
+</TextView>
+
+<ScrollView
+    android:layout_width="400dp"
+    android:layout_height="300dp"
+    android:orientation="vertical"
+    android:layout_gravity="center"
+    >
+
+
+    <TextView
+        android:id="@+id/routes_data"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:layout_marginBottom="10dp"
+        android:gravity="center"
+        android:text="@string/_1405_rajendra_nagar_route_1503_quila_route_1684_mini_bypass_route_6426_junction_route_1745_faridpur_route_1400_c_b_ganj_route_6976_nawabganj_route"
+        android:textColor="@color/black"
+        android:textSize="24dp"
+        android:textStyle="bold">
+
+    </TextView>
+
+</ScrollView>
+
+
+
+
+
+
+</LinearLayout>
