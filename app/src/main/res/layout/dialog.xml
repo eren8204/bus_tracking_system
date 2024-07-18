@@ -10,6 +10,7 @@ android:background="@color/white">
 
 
 <TextView
+    android:id="@+id/custom_route"
     android:layout_width="wrap_content"
     android:layout_height="wrap_content"
     android:gravity="center"
@@ -37,7 +38,6 @@ android:background="@color/white">
         android:layout_marginTop="10dp"
         android:layout_marginBottom="10dp"
         android:gravity="center"
-        android:text="@string/_1405_rajendra_nagar_route_1503_quila_route_1684_mini_bypass_route_6426_junction_route_1745_faridpur_route_1400_c_b_ganj_route_6976_nawabganj_route"
         android:textColor="@color/black"
         android:textSize="24dp"
         android:textStyle="bold">
