@@ -72,7 +72,7 @@ public class driverloc extends AppCompatActivity implements OnMapReadyCallback{
     TextView statustext;
     String name;
     GoogleMap googleMap;
-    ImageView alert;
+//    ImageView alert;
     private static final long UPDATE_INTERVAL = 7000;
     private static final float SMALLEST_DISPLACEMENT = 10f;
 
@@ -86,7 +86,7 @@ public class driverloc extends AppCompatActivity implements OnMapReadyCallback{
         stopbtn = findViewById(R.id.stopbtn);
         busnostart = findViewById(R.id.busnostart);
         statustext = findViewById(R.id.statustext);
-        alert = findViewById(R.id.alert);
+//        alert = findViewById(R.id.alert);
 
         fusedLocationProviderClient = LocationServices.getFusedLocationProviderClient(this);
         getLastLocation();
@@ -209,31 +209,31 @@ public class driverloc extends AppCompatActivity implements OnMapReadyCallback{
             }
         });
 
-        alert.setOnClickListener(new View.OnClickListener() {
-            @SuppressLint("SetTextI18n")
-            @Override
-            public void onClick(View v) {
-                handler.removeCallbacks(updateLocationRunnable);
-                Document filter = new Document("userid", user.getId()).append("busno", busnostart.getText().toString());
-                mongoCollection.deleteOne(filter).getAsync(result -> {
-                    if (result.isSuccess()) {
-                        long deletedCount = result.get().getDeletedCount();
-                        if (deletedCount > 0) {
-                            Toast.makeText(driverloc.this, "Journey Stopped", Toast.LENGTH_SHORT).show();
-                            statustext.setText("Stopped");
-                        } else {
-                            Toast.makeText(driverloc.this, "Bus Not Running", Toast.LENGTH_SHORT).show();
-                            statustext.setText("Stopped");
-                        }
-                    } else {
-                        Toast.makeText(driverloc.this, "Bus Not Running", Toast.LENGTH_SHORT).show();
-                    }
-                });
-                Toast.makeText(driverloc.this, "Emergency Situation!!!", Toast.LENGTH_SHORT).show();
-                Intent intent = new Intent(driverloc.this, emergency.class);
-                startActivity(intent);
-            }
-        });
+//        alert.setOnClickListener(new View.OnClickListener() {
+//            @SuppressLint("SetTextI18n")
+//            @Override
+//            public void onClick(View v) {
+//                handler.removeCallbacks(updateLocationRunnable);
+//                Document filter = new Document("userid", user.getId()).append("busno", busnostart.getText().toString());
+//                mongoCollection.deleteOne(filter).getAsync(result -> {
+//                    if (result.isSuccess()) {
+//                        long deletedCount = result.get().getDeletedCount();
+//                        if (deletedCount > 0) {
+//                            Toast.makeText(driverloc.this, "Journey Stopped", Toast.LENGTH_SHORT).show();
+//                            statustext.setText("Stopped");
+//                        } else {
+//                            Toast.makeText(driverloc.this, "Bus Not Running", Toast.LENGTH_SHORT).show();
+//                            statustext.setText("Stopped");
+//                        }
+//                    } else {
+//                        Toast.makeText(driverloc.this, "Bus Not Running", Toast.LENGTH_SHORT).show();
+//                    }
+//                });
+//                Toast.makeText(driverloc.this, "Emergency Situation!!!", Toast.LENGTH_SHORT).show();
+//                Intent intent = new Intent(driverloc.this, emergency.class);
+//                startActivity(intent);
+//            }
+//        });
     }
     Handler handler = new Handler();
     Runnable updateLocationRunnable = new Runnable() {

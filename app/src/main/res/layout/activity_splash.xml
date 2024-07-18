@@ -1,108 +1,99 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/trafficback"
+    android:layout_gravity="center"
+    android:orientation="vertical"
+    android:background="@drawable/background"
     tools:context=".splashActivity">
 
+    <ImageView
+        android:id="@+id/bell"
+        android:layout_width="50sp"
+        android:layout_height="50sp"
+        android:layout_gravity="top"
+        android:layout_marginLeft="20sp"
+        android:layout_marginTop="20sp"
+        android:clickable="true"
+        app:srcCompat="@drawable/baseline_add_alert_24" />
 
-    <RelativeLayout
+    <ImageView
+        android:id="@+id/srmslogo"
+        android:layout_width="150sp"
+        android:layout_height="150sp"
+        android:layout_gravity="center"
+        app:srcCompat="@drawable/logo" />
+
+    <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:alpha="0.7"
-        android:background="#8250DC" >
-
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:layout_marginTop="40sp"
+        android:layout_gravity="center"
+        android:gravity="center">
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="sans-serif-medium"
+            android:text="GO MAP"
+            android:textColor="@color/black"
+            android:textSize="32sp"
+            android:textStyle="bold" />
         <ImageView
-            android:id="@+id/bell"
-            android:layout_width="50dp"
-            android:layout_height="50dp"
-            android:layout_gravity="top"
-            android:layout_marginLeft="20dp"
-            android:layout_marginTop="15dp"
-            android:clickable="true"
-            app:srcCompat="@drawable/baseline_add_alert_24" />
+            android:layout_width="50sp"
+            android:layout_height="50sp"
+            android:src="@drawable/baseline_add_location_24" />
+    </LinearLayout>
+
+    <Button
+        android:id="@+id/routes"
+        android:text="Routes"
+        android:layout_width="300sp"
+        android:layout_height="50sp"
+        android:layout_marginTop="30sp"
+        android:layout_gravity="center"
+        android:background="@drawable/btnbackground"
+        android:textSize="20sp"
+        android:textStyle="bold"
+        android:textColor="@color/white">
+
+    </Button>
 
 
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="354dp"
-            android:layout_marginBottom="78dp"
-            android:gravity="center"
-            android:orientation="vertical"
-            android:padding="28dp">
+    <Button
+        android:id="@+id/Driver"
+        android:layout_width="300sp"
+        android:layout_height="50sp"
+        android:layout_marginTop="20sp"
+        android:layout_gravity="center"
+        android:background="@drawable/btnbackground"
+        android:textSize="20sp"
+        android:textStyle="bold"
+        android:textColor="@color/white"
+        android:text="Driver">
+
+    </Button>
+
+    <Button
+        android:id="@+id/user"
+        android:layout_width="300sp"
+        android:layout_height="50sp"
+        android:layout_marginTop="20sp"
+        android:layout_gravity="center"
+        android:background="@drawable/btnbackground"
+        android:textSize="20sp"
+        android:textStyle="bold"
+        android:textColor="@color/white"
+        android:text="User">
+
+    </Button>
+
+
+</LinearLayout>
 
 
 
-            <ImageView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:src="@drawable/baseline_location_on_24" />
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:fontFamily="sans-serif-medium"
-                android:text="GO MAP"
-                android:textColor="@color/white"
-                android:textSize="32sp"
-                android:textStyle="bold" />
 
 
-        </LinearLayout>
-    </RelativeLayout>
-
-
-    <androidx.cardview.widget.CardView
-        android:layout_width="match_parent"
-        android:layout_height="300dp"
-        android:layout_alignParentBottom="true"
-        app:cardCornerRadius="28dp"
-        android:layout_marginBottom="-1dp"
-        android:id="@+id/card_view"
-        >
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="302dp"
-            android:gravity="center"
-            android:orientation="vertical"
-            android:padding="28dp">
-
-
-            <Button
-                android:id="@+id/routes"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginBottom="40dp"
-                android:background="@drawable/buttonstyle2"
-                android:text="Routes"
-                android:textColor="@color/white">
-
-            </Button>
-
-
-            <Button
-                android:id="@+id/Driver"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:background="@drawable/buttonstyle2"
-                android:text="Driver"
-                android:textColor="@color/white">
-
-            </Button>
-
-            <Button
-                android:id="@+id/user"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="40dp"
-                android:background="@drawable/buttonstyle2"
-                android:text="USER Name"
-                android:textColor="@color/white">
-
-            </Button>
-        </LinearLayout>
-    </androidx.cardview.widget.CardView>
-</RelativeLayout>

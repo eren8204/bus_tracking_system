@@ -1,125 +1,158 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/trafficback"
+    android:orientation="vertical"
+    android:layout_gravity="center"
+    android:background="@drawable/background"
     tools:context=".MainActivity">
 
+    <ImageView
+        android:id="@+id/bell"
+        android:layout_width="50sp"
+        android:layout_height="50sp"
+        android:layout_gravity="top"
+        android:layout_marginLeft="20sp"
+        android:layout_marginTop="15sp"
+        android:clickable="true"
+        app:srcCompat="@drawable/baseline_add_alert_24" />
 
-    <RelativeLayout
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:background="#8250DC"
-        android:alpha="0.7"/>
+    <ImageView
+        android:id="@+id/srmslogo"
+        android:layout_width="150sp"
+        android:layout_height="150sp"
+        android:layout_gravity="center"
+        app:srcCompat="@drawable/logo" />
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:orientation="vertical"
-        android:gravity="center"
-        android:layout_above="@id/card_view"
-        android:padding="28dp">
-
-        <ImageView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:src="@drawable/baseline_location_on_24"/>
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:layout_marginTop="20sp"
+        android:paddingLeft="20sp"
+        android:layout_gravity="center"
+        android:gravity="center">
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="GO MAP"
-            android:textStyle="bold"
             android:fontFamily="sans-serif-medium"
+            android:text="GO MAP"
+            android:textColor="@color/black"
             android:textSize="32sp"
-            android:textColor="@color/white"/>
-
-
+            android:textStyle="bold" />
+        <ImageView
+            android:layout_width="50sp"
+            android:layout_height="50sp"
+            android:src="@drawable/baseline_add_location_24" />
     </LinearLayout>
 
-    <androidx.cardview.widget.CardView
-        android:layout_width="match_parent"
+
+
+    <TextView
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignParentBottom="true"
-        app:cardCornerRadius="28dp"
-        android:layout_marginBottom="-20dp"
-        android:id="@+id/card_view"
+        android:layout_marginTop="20sp"
+        android:text="Welcome"
+        android:textColor="#B41116"
+        android:layout_gravity="left"
+        android:layout_marginLeft="35sp"
+        android:gravity="center"
+        android:textSize="32sp"
+        android:textStyle="bold"/>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="left"
+        android:layout_marginLeft="35sp"
+        android:textStyle="bold"
+        android:text="Please login with your information"
+        android:alpha="0.7"/>
+
+
+
+    <EditText
+        android:id="@+id/loginphone"
+        android:layout_width="300sp"
+        android:layout_height="40sp"
+        android:layout_marginTop="30sp"
+        android:layout_gravity="center"
+        android:gravity="left"
+        android:paddingLeft="15sp"
+        android:drawableLeft="@drawable/baseline_perm_identity_24"
+        android:paddingTop="8sp"
+        android:textSize="20sp"
+        android:background="@drawable/edittextbackground"
+        android:inputType="number"
+        android:hint="Enter Phone No."
+        />
+
+    <View
+        android:layout_width="wrap_content"
+        android:layout_height="20dp"/>
+
+
+    <EditText
+        android:id="@+id/loginpass"
+        android:layout_width="300sp"
+        android:layout_height="40sp"
+        android:layout_gravity="center"
+        android:gravity="left"
+        android:paddingLeft="15sp"
+        android:paddingTop="8sp"
+        android:textSize="20sp"
+        android:drawableLeft="@drawable/baseline_lock_24"
+        android:background="@drawable/edittextbackground"
+        android:inputType="textPassword"
+        android:hint="Enter your password"
+        />
+
+    <View
+        android:layout_width="wrap_content"
+        android:layout_height="10dp"/>
+
+    <Button
+        android:id="@+id/loginbtn"
+        android:layout_width="300sp"
+        android:layout_height="50sp"
+        android:layout_marginTop="20sp"
+        android:layout_gravity="center"
+        android:background="@drawable/btnbackground"
+        android:textSize="20sp"
+        android:textStyle="bold"
+        android:textColor="@color/white"
+        android:text="LOGIN"
         >
+    </Button>
+</LinearLayout>
 
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="vertical"
-            android:padding="28dp">
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Welcome"
-                android:textColor="#8250DC"
-                android:textSize="32sp"
-                android:textStyle="bold"/>
 
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Please login with your information"
-                android:alpha="0.7"/>
 
-            <View
-                android:layout_width="wrap_content"
-                android:layout_height="30dp"/>
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Phone No."
-                android:textColor="@color/black"
-                android:alpha="0.7"
-                android:textStyle="bold"/>
 
-            <EditText
-                android:id="@+id/loginphone"
-                android:layout_width="match_parent"
-                android:layout_height="48dp"
-                android:inputType="number"
-                android:hint="Enter Phone No."
-                />
 
-            <View
-                android:layout_width="wrap_content"
-                android:layout_height="20dp"/>
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Password"
-                android:textColor="@color/black"
-                android:alpha="0.7"
-                android:textStyle="bold"/>
 
-            <EditText
-                android:id="@+id/loginpass"
-                android:layout_width="match_parent"
-                android:layout_height="48dp"
-                android:inputType="textPassword"
-                android:hint="Enter your password"
-                />
 
-            <View
-                android:layout_width="wrap_content"
-                android:layout_height="10dp"/>
 
-            <Button
-                android:id="@+id/loginbtn"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="LOGIN"
-                android:textColor="@color/white"
-                android:background="@drawable/buttonstyle">
-            </Button>
-        </LinearLayout>
-    </androidx.cardview.widget.CardView>
-</RelativeLayout>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 

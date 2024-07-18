@@ -15,51 +15,56 @@
         android:layout_height="match_parent"
         app:layout_constraintTop_toTopOf="parent">
 
-    <androidx.cardview.widget.CardView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="40dp"
-        android:orientation="vertical"
-        app:cardCornerRadius="400dp"
-        android:id="@+id/card_view"
-        >
-        <LinearLayout
+        <androidx.cardview.widget.CardView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="horizontal"
-            android:padding="28dp">
-            <EditText
-                android:id="@+id/busno"
-                android:layout_width="wrap_content"
+            android:layout_marginTop="40sp"
+            android:orientation="vertical"
+            app:cardCornerRadius="400sp"
+            android:id="@+id/card_view"
+            >
+
+            <LinearLayout
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginLeft="20dp"
-                android:hint="Enter the bus no. "
-                android:textSize="20dp"
-                android:inputType="number"
-                app:layout_constraintBottom_toTopOf="@+id/map"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="0.142"
-                >
-            </EditText>
+                android:orientation="horizontal"
+                android:layout_gravity="center"
+                android:gravity="center"
+                android:padding="28sp">
+                <EditText
+                    android:id="@+id/busno"
+                    android:layout_width="150sp"
+                    android:layout_height="50sp"
+                    android:paddingLeft="20sp"
+                    android:hint="Bus number"
+                    android:background="@drawable/edittextbackground"
+                    android:textSize="20sp"
+                    android:inputType="number"
+                    app:layout_constraintBottom_toTopOf="@+id/map"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintHorizontal_bias="0.142"
+                    >
+                </EditText>
 
 
-            <Button
-                android:id="@+id/search"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="50dp"
-                android:text="Search"
-                app:layout_constraintBottom_toBottomOf="@+id/busno"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="0.505"
-                app:layout_constraintStart_toEndOf="@+id/busno"
-                app:layout_constraintTop_toTopOf="@+id/busno">
+                <Button
+                    android:id="@+id/search"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="10sp"
+                    android:text="Search"
+                    android:background="@drawable/btndriver"
+                    app:layout_constraintBottom_toBottomOf="@+id/busno"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintHorizontal_bias="0.505"
+                    app:layout_constraintStart_toEndOf="@+id/busno"
+                    app:layout_constraintTop_toTopOf="@+id/busno">
 
-            </Button>
+                </Button>
 
-        </LinearLayout>
+            </LinearLayout>
 
-    </androidx.cardview.widget.CardView>
+        </androidx.cardview.widget.CardView>
 
     </fragment>
 </androidx.constraintlayout.widget.ConstraintLayout>

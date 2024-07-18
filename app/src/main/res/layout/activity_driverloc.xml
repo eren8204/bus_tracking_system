@@ -16,91 +16,101 @@
         android:layout_height="match_parent"
         app:layout_constraintTop_toTopOf="parent">
 
-    <androidx.cardview.widget.CardView
-        android:id="@+id/card_view"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="vertical"
-        app:cardCornerRadius="300dp">
-
-        <androidx.constraintlayout.widget.ConstraintLayout
+        <androidx.cardview.widget.CardView
+            android:id="@+id/card_view"
             android:layout_width="match_parent"
-            android:layout_height="185dp"
-            android:orientation="horizontal"
-            android:padding="28dp">
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            app:cardCornerRadius="300sp">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="185sp"
+                android:orientation="vertical"
+                android:padding="28sp">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="70sp"
+                    android:orientation="horizontal"
+                    android:layout_gravity="center"
+                    android:gravity="center">
+
+                    <EditText
+                        android:id="@+id/busnostart"
+                        android:layout_width="120sp"
+                        android:layout_height="50sp"
+                        android:background="@drawable/edittextbackground"
+                        android:hint="Bus Number"
+                        android:inputType="number"
+                        android:paddingLeft="10sp"
+                        android:textSize="15sp"
+                        />
+
+                    <Button
+                        android:id="@+id/startbtn"
+                        android:layout_width="150sp"
+                        android:layout_height="50sp"
+                        android:layout_marginLeft="20sp"
+                        android:background="@drawable/btndriver"
+                        android:gravity="center"
+                        android:text="Start Journey"
+                        android:textSize="15sp"
+                        />
 
 
-            <EditText
-                android:id="@+id/busnostart"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="20dp"
-                android:layout_marginTop="16dp"
-                android:ems="10"
-                android:hint="Enter Bus Number"
-                android:inputType="number"
-                android:textSize="15dp"
-                app:layout_constraintBottom_toTopOf="@+id/map"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="0.0"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent"
-                app:layout_constraintVertical_bias="0.112"
-                tools:ignore="NotSibling" />
-
-            <Button
-                android:id="@+id/startbtn"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginEnd="4dp"
-                android:layout_marginBottom="64dp"
-                android:text="Start Journey"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toEndOf="parent" />
-
-            <TextView
-                android:id="@+id/statustext"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginBottom="32dp"
-                android:hint="Not Running"
-                android:textSize="15dp"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="0.073"
-                app:layout_constraintStart_toStartOf="parent" />
-
-            <Button
-                android:id="@+id/stopbtn"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginEnd="4dp"
-                android:layout_marginBottom="16dp"
-                android:text="Stop Journey"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toEndOf="parent" />
-
-            <ImageView
-                android:id="@+id/alert"
-                android:layout_width="50dp"
-                android:layout_height="50dp"
-                android:layout_gravity="top"
-                android:clickable="true"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="0.449"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent"
-                app:layout_constraintVertical_bias="0.822"
-                app:srcCompat="@drawable/baseline_bus_alert_24"
-                tools:ignore="MissingConstraints" />
-
-        </androidx.constraintlayout.widget.ConstraintLayout>
+                </LinearLayout>
 
 
-    </androidx.cardview.widget.CardView>
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="70sp"
+                    android:orientation="horizontal"
+                    android:layout_gravity="center"
+                    android:gravity="center">
 
-</fragment>
+
+                    <TextView
+                        android:id="@+id/statustext"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="20sp"
+                        android:hint="Not Running"
+                        android:textSize="15sp"
+                        />
+
+                    <!--                <ImageView-->
+                    <!--                    android:id="@+id/alert"-->
+                    <!--                    android:layout_width="50sp"-->
+                    <!--                    android:layout_height="50sp"-->
+                    <!--                    android:layout_gravity="top"-->
+                    <!--                    android:clickable="true"-->
+                    <!--                    android:layout_marginLeft="8sp"-->
+                    <!--                    app:srcCompat="@drawable/baseline_bus_alert_24"-->
+                    <!--                    />-->
+                    <Button
+                        android:id="@+id/stopbtn"
+                        android:layout_width="150sp"
+                        android:layout_height="50sp"
+                        android:layout_marginLeft="35sp"
+                        android:background="@drawable/btndriver"
+                        android:gravity="center"
+                        android:text="Stop Journey"
+                        android:textSize="15sp"
+                        />
+
+
+
+
+                </LinearLayout>
+
+
+            </LinearLayout>
+
+
+        </androidx.cardview.widget.CardView>
+
+    </fragment>
 
 </androidx.constraintlayout.widget.ConstraintLayout>
 
