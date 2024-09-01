@@ -1,70 +1,92 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.appcompat.widget.LinearLayoutCompat xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/main"
     android:orientation="vertical"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@color/grey"
     tools:context=".buslocate">
 
-    <fragment
-        android:id="@+id/map"
-        android:name="com.google.android.gms.maps.SupportMapFragment"
+    <LinearLayout
+        android:id="@+id/statusbar"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        app:layout_constraintTop_toTopOf="parent">
-
-        <androidx.cardview.widget.CardView
+        android:layout_height="wrap_content"
+        android:background="@color/grey"
+        android:orientation="vertical"
+        android:layout_gravity="center"
+        android:padding="10sp"
+        >
+        <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="40sp"
-            android:orientation="vertical"
-            app:cardCornerRadius="400sp"
-            android:id="@+id/card_view"
-            >
-
-            <LinearLayout
-                android:layout_width="match_parent"
+            android:padding="15dp"
+            android:orientation="horizontal"
+            android:gravity="center">
+            <TextView
+                android:id="@+id/statustext"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:orientation="horizontal"
-                android:layout_gravity="center"
-                android:gravity="center"
-                android:padding="28sp">
-                <EditText
-                    android:id="@+id/busno"
-                    android:layout_width="150sp"
-                    android:layout_height="50sp"
-                    android:paddingLeft="20sp"
-                    android:hint="Bus number"
-                    android:background="@drawable/edittextbackground"
-                    android:textSize="20sp"
-                    android:inputType="number"
-                    app:layout_constraintBottom_toTopOf="@+id/map"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintHorizontal_bias="0.142"
-                    >
-                </EditText>
-
-
-                <Button
-                    android:id="@+id/search"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginLeft="10sp"
-                    android:text="Search"
-                    android:background="@drawable/btndriver"
-                    app:layout_constraintBottom_toBottomOf="@+id/busno"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintHorizontal_bias="0.505"
-                    app:layout_constraintStart_toEndOf="@+id/busno"
-                    app:layout_constraintTop_toTopOf="@+id/busno">
-
-                </Button>
-
-            </LinearLayout>
-
+                android:text="Not Running"
+                android:textColor="@color/white"
+                android:textSize="30sp"/>
+        </LinearLayout>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:gravity="center"
+            android:padding="10dp">
+            <EditText
+                android:id="@+id/busno"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:inputType="number"
+                android:background="@drawable/edittextbackground"
+                android:layout_margin="10dp"
+                android:padding="20dp"
+                android:hint="Bus Number"/>
+            <Button
+                android:id="@+id/search"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Search"
+                android:background="@drawable/btndriver"
+                />
+        </LinearLayout>
+    </LinearLayout>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        >
+        <androidx.cardview.widget.CardView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            app:cardCornerRadius="20sp">
+            <fragment
+                android:id="@+id/map"
+                android:name="com.google.android.gms.maps.SupportMapFragment"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                app:layout_constraintTop_toTopOf="parent"
+                tools:layout_editor_absoluteX="7dp">
+                    <LinearLayout
+                        android:id="@+id/bottom_status"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="bottom"
+                        android:background="@color/grey"
+                        android:gravity="bottom">
+                        <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:padding="10dp"
+                            android:text="Bus is Running"
+                            android:gravity="bottom"/>
+                    </LinearLayout>
+            </fragment>
         </androidx.cardview.widget.CardView>
-
-    </fragment>
-</androidx.constraintlayout.widget.ConstraintLayout>
+    </LinearLayout>
+</androidx.appcompat.widget.LinearLayoutCompat>
