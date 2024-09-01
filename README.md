@@ -9,8 +9,6 @@ Bus Tracking Application which uses mobile location of drivers to update the bus
 - User - Users can easily locate their bus by simply entering bus no
 
 ## Screenshots
-
-Some screenshots of project.
 ![Main](app/src/main/res/scrnsht/1.png)
 ![Routes](app/src/main/res/scrnsht/2.png)
 ![Driver Login](app/src/main/res/scrnsht/3.png)
@@ -45,4 +43,4 @@ If you have any questions, feel free to reach out to me at apskumar24@gmail.com.
 
 ## Acknowledgments
 This project is in collaboration with https://github.com/ashish-maurya531 (Admin Web Panel Developer)
-\nCheck out his repo https://github.com/ashish-maurya531/Bus-Tracking-System
+Check out his repo https://github.com/ashish-maurya531/Bus-Tracking-System
