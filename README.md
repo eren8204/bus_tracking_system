@@ -11,18 +11,13 @@ Bus Tracking Application which uses mobile location of drivers to update the bus
 ## Screenshots
 
 Some screenshots of project.
-Main
 ![Main](app/src/main/res/scrnsht/1.png)
-Routes
 ![Routes](app/src/main/res/scrnsht/2.png)
-Driver Login
 ![Driver Login](app/src/main/res/scrnsht/3.png)
-Bus Not Running
 ![Bus Not Running](app/src/main/res/scrnsht/4.png)
-Bus Running
 ![Bus Running](app/src/main/res/scrnsht/5.png)
-User
 ![User](app/src/main/res/scrnsht/6.png)
+
 ## Installation
 Clone the project and run apk
 
@@ -50,4 +45,4 @@ If you have any questions, feel free to reach out to me at apskumar24@gmail.com.
 
 ## Acknowledgments
 This project is in collaboration with https://github.com/ashish-maurya531 (Admin Web Panel Developer)
-Check out his repo https://github.com/ashish-maurya531/Bus-Tracking-System
+\nCheck out his repo https://github.com/ashish-maurya531/Bus-Tracking-System
