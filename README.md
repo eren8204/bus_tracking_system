@@ -43,4 +43,4 @@ If you have any questions, feel free to reach out to me at apskumar24@gmail.com.
 
 ## Acknowledgments
 This project is in collaboration with https://github.com/ashish-maurya531 (Admin Web Panel Developer)
-Check out his repo https://github.com/ashish-maurya531/Bus-Tracking-System
+Check out his repo https://github.com/ashish-maurya531/GoMap-Bus-Tracking-System
