@@ -101,6 +101,10 @@ public class driverloc extends AppCompatActivity implements OnMapReadyCallback{
         bottom_status = findViewById(R.id.bottom_status);
         curr_bus = findViewById(R.id.curr_bus);
         bustext = findViewById(R.id.bustext);
+
+        Intent intent = getIntent();
+        String driver_id = intent.getStringExtra("driver_id");
+
         checkLocationServices();
         fusedLocationProviderClient = LocationServices.getFusedLocationProviderClient(this);
         getLastLocation();
@@ -188,6 +192,7 @@ public class driverloc extends AppCompatActivity implements OnMapReadyCallback{
                                             Document document = new Document()
                                                     .append("_id", new ObjectId())
                                                     .append("userid", user.getId())
+                                                    .append("driver_id",driver_id)
                                                     .append("busno", bsn)
                                                     .append("lat", lat)
                                                     .append("lon", lon);

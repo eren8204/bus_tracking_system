@@ -59,6 +59,7 @@ public class MainActivity extends AppCompatActivity {
                             if (result.isSuccess()) {
                                 Toast.makeText(MainActivity.this, "Logged in successfully", Toast.LENGTH_SHORT).show();
                                 Intent intent = new Intent(MainActivity.this, driverloc.class);
+                                intent.putExtra("driver_id",id);
                                 startActivity(intent);
                             } else {
                                 Toast.makeText(MainActivity.this, "Try again", Toast.LENGTH_SHORT).show();
