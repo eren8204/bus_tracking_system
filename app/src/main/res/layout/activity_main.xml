@@ -86,8 +86,8 @@
         android:paddingTop="8sp"
         android:textSize="20sp"
         android:background="@drawable/edittextbackground"
-        android:inputType="number"
-        android:hint="Enter Phone No."
+        android:inputType="text"
+        android:hint="Enter User Id"
         />
 
     <View
@@ -106,7 +106,7 @@
         android:textSize="20sp"
         android:drawableLeft="@drawable/baseline_lock_24"
         android:background="@drawable/edittextbackground"
-        android:inputType="textPassword"
+        android:inputType="text"
         android:hint="Enter your password"
         />
 

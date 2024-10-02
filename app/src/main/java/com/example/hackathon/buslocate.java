@@ -53,7 +53,7 @@ public class buslocate extends AppCompatActivity implements OnMapReadyCallback{
     private final int FINE_PERMISSION_CODE = 1;
     Location currentLocation;
     FusedLocationProviderClient fusedLocationProviderClient;
-    String Appid = "application-0-raildng";
+    String Appid = BuildConfig.appId;
     App app;
     MongoClient mongoClient;
     MongoDatabase mongoDatabase;

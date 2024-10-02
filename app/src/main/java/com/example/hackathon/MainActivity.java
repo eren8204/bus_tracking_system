@@ -30,7 +30,7 @@ import io.realm.mongodb.mongo.MongoDatabase;
 public class MainActivity extends AppCompatActivity {
     Button loginbtn;
     EditText loginphone,loginpass;
-    String Appid = "application-0-raildng";
+    private String Appid = BuildConfig.appId;
     App app;
     @SuppressLint("MissingInflatedId")
     @Override

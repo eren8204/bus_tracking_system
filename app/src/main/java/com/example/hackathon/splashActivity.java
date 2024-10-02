@@ -49,7 +49,7 @@ public class splashActivity extends AppCompatActivity {
     View user;
     Button driver;
     Button route;
-    String Appid = "application-0-raildng";
+    String Appid = BuildConfig.appId;
     App app;
     MongoClient mongoClient;
     MongoDatabase mongoDatabase;

@@ -1,8 +1,19 @@
+import java.util.Properties
 plugins {
     alias(libs.plugins.androidApplication)
     id("com.google.android.libraries.mapsplatform.secrets-gradle-plugin")
     id("realm-android")
 }
+val localProperties = Properties()
+val localPropertiesFile = rootProject.file("local.properties")
+
+if (localPropertiesFile.exists()) {
+    localProperties.load(localPropertiesFile.inputStream())
+}
+
+val appId: String = localProperties.getProperty("appId")
+val mapsApiKey: String = localProperties.getProperty("MAPS_API_KEY") ?: ""
+
 apply(plugin = "realm-android")
 android {
     namespace = "com.example.hackathon"
@@ -14,8 +25,13 @@ android {
         targetSdk = 34
         versionCode = 1
         versionName = "1.0"
-
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
+        buildConfigField("String", "appId", "\"$appId\"")
+        manifestPlaceholders["MAPS_API_KEY"] = mapsApiKey
+    }
+
+    buildFeatures{
+        buildConfig = true
     }
 
     buildTypes {
