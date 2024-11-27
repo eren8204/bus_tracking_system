@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.appcompat.widget.LinearLayoutCompat xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/main"
@@ -46,6 +46,7 @@
                 android:background="@drawable/edittextbackground"
                 android:layout_margin="10dp"
                 android:padding="20dp"
+                android:maxLength="4"
                 android:hint="Bus Number"/>
             <Button
                 android:id="@+id/search"
@@ -89,4 +90,4 @@
             </fragment>
         </androidx.cardview.widget.CardView>
     </LinearLayout>
-</androidx.appcompat.widget.LinearLayoutCompat>
+</LinearLayout>

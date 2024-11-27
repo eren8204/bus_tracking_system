@@ -1,107 +1,92 @@
 package com.example.hackathon;
 
-import android.annotation.SuppressLint;
-import android.content.ActivityNotFoundException;
-import android.content.Context;
 import android.content.Intent;
-import android.net.Uri;
-import android.os.Build;
 import android.os.Bundle;
-import android.webkit.DownloadListener;
-import android.webkit.ValueCallback;
-import android.webkit.WebChromeClient;
-import android.webkit.WebSettings;
-import android.webkit.WebView;
-import android.webkit.WebViewClient;
+import android.view.View;
+import android.widget.AdapterView;
+import android.widget.ListView;
 import android.widget.Toast;
 
-import androidx.activity.EdgeToEdge;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.core.graphics.Insets;
-import androidx.core.view.ViewCompat;
-import androidx.core.view.WindowInsetsCompat;
+
+import com.android.volley.Request;
+import com.android.volley.RequestQueue;
+import com.android.volley.Response;
+import com.android.volley.VolleyError;
+import com.android.volley.toolbox.JsonArrayRequest;
+import com.android.volley.toolbox.Volley;
+
+import org.json.JSONArray;
+import org.json.JSONException;
+
+import java.util.ArrayList;
 
 public class notices extends AppCompatActivity {
-    private WebView mWebView;
-    public static final boolean ASWP_EXTURL = true;
-    private static final int FILE_CHOOSER_REQUEST_CODE = 1;
-    private ValueCallback<Uri[]> mFilePathCallback;
-    @SuppressLint({"JavascriptInterface", "CutPasteId", "SetJavaScriptEnabled"})
+
+    private static final String BASE_URL = "https://gomap-bus-tracking-system.onrender.com/";
+    private static final String NOTICES_URL = BASE_URL + "notices/";
+    private static final String API_URL = BASE_URL + "api/notices/";
+
+    private ListView listView;
+    private ArrayList<PdfItem> pdfItems;
+    private PdfAdapter adapter;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        //EdgeToEdge.enable(this);
         setContentView(R.layout.activity_notices);
-        WebView webView = findViewById(R.id.web);
-        mWebView = (WebView) findViewById(R.id.web);
 
-        webView.loadUrl("https://srmsbusnotice.w3spaces.com/");
-        webView.getSettings().setJavaScriptEnabled(true);
-        webView.getSettings().setAllowFileAccess(true);
-        webView.getSettings().setAllowContentAccess(true);
-        webView.getSettings().setMixedContentMode(WebSettings.MIXED_CONTENT_ALWAYS_ALLOW);
-        if (getSupportActionBar() != null) {
-            getSupportActionBar().hide();
-        }
-        webView.setDownloadListener(new DownloadListener() {
-            public void onDownloadStart(String url, String userAgent,
-                                        String contentDisposition, String mimetype,
-                                        long contentLength) {
-                Intent i = new Intent(Intent.ACTION_VIEW);
-                i.setData(Uri.parse(url));
-                startActivity(i);
-            }
-        });
-        webView.setWebViewClient(new WebViewClient() {
-            @Override
-            public boolean shouldOverrideUrlLoading(WebView view, String url) {
-                if (ASWP_EXTURL && !url.startsWith("https://srmsbusnotice.w3spaces.com")) {
-                    Intent intent = new Intent(Intent.ACTION_VIEW, Uri.parse(url));
-                    startActivity(intent);
-                    return true;
-                }
-                return super.shouldOverrideUrlLoading(view, url);
-            }
-        });
-        class WebAppInterface {
+        listView = findViewById(R.id.listView);
+        pdfItems = new ArrayList<>();
+        adapter = new PdfAdapter(this, pdfItems);
+        listView.setAdapter(adapter);
 
-            public WebAppInterface(Context context) {
-            }
-        }
-        webView.addJavascriptInterface(new WebAppInterface(this), "Android");
-        webView.setWebChromeClient(new WebChromeClient() {
+        // Fetch PDF name
+        fetchPdfNames();
+
+
+        listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
-            public boolean onShowFileChooser(WebView webView, ValueCallback<Uri[]> filePathCallback, FileChooserParams fileChooserParams) {
-                Intent intent = fileChooserParams.createIntent();
-                try {
-                    startActivityForResult(intent, FILE_CHOOSER_REQUEST_CODE);
-                    mFilePathCallback = filePathCallback;
-                } catch (ActivityNotFoundException e) {
-                    mFilePathCallback = null;
-                    filePathCallback.onReceiveValue(null);
-                    Toast.makeText(getApplicationContext(), "No app found to open file chooser.", Toast.LENGTH_LONG).show();
-                }
-                return true;
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                PdfItem pdfItem = pdfItems.get(position);
+                String pdfUrl = API_URL + pdfItem.getFileName();
+                openPdfInWebView(pdfUrl, pdfItem.getFileName());
             }
         });
     }
-    @Override
-    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
-        if (requestCode == FILE_CHOOSER_REQUEST_CODE) {
-            if (resultCode == RESULT_OK) {
-                if (mFilePathCallback != null) {
-                    Uri[] result = WebChromeClient.FileChooserParams.parseResult(resultCode, data);
-                    mFilePathCallback.onReceiveValue(result);
-                    mFilePathCallback = null;
-                }
-            } else {
-                if (mFilePathCallback != null) {
-                    mFilePathCallback.onReceiveValue(null);
-                    mFilePathCallback = null;
-                }
-            }
-        } else {
-            super.onActivityResult(requestCode, resultCode, data);
-        }
+
+    private void fetchPdfNames() {
+        RequestQueue queue = Volley.newRequestQueue(this);
+        JsonArrayRequest jsonArrayRequest = new JsonArrayRequest(Request.Method.GET, NOTICES_URL, null,
+                new Response.Listener<JSONArray>() {
+                    @Override
+                    public void onResponse(JSONArray response) {
+                        try {
+                            for (int i = 0; i < response.length(); i++) {
+                                String fileName = response.getJSONObject(i).getString("file");
+                                String addedDate = response.getJSONObject(i).getString("addedDate");
+                                pdfItems.add(new PdfItem(fileName, addedDate));
+                            }
+                            adapter.notifyDataSetChanged();
+                        } catch (JSONException e) {
+                            e.printStackTrace();
+                            Toast.makeText(notices.this, "Error parsing JSON", Toast.LENGTH_SHORT).show();
+                        }
+                    }
+                },
+                new Response.ErrorListener() {
+                    @Override
+                    public void onErrorResponse(VolleyError error) {
+                        Toast.makeText(notices.this, "Failed to fetch PDF names", Toast.LENGTH_SHORT).show();
+                    }
+                });
+        queue.add(jsonArrayRequest);
+    }
+
+    private void openPdfInWebView(String pdfUrl, String pdfName) {
+        Intent intent = new Intent(notices.this, PdfViewerActivity.class);
+        intent.putExtra("pdfUrl", pdfUrl);
+        intent.putExtra("file", pdfName);
+        startActivity(intent);
     }
 }
