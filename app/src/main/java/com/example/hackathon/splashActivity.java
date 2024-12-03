@@ -66,7 +66,6 @@ public class splashActivity extends AppCompatActivity {
     MongoDatabase mongoDatabase;
     MongoCollection<Document> mongoCollection,mongoCollection2;
     ImageView bell;
-    SearchView searchView;
 
     @SuppressLint({"MissingInflatedId", "WrongViewCast"})
     @Override
@@ -91,6 +90,9 @@ public class splashActivity extends AppCompatActivity {
 
                 TextView customRoute = dialog.findViewById(R.id.custom_route);
                 ListView routesList = dialog.findViewById(R.id.routes_list);
+                SearchView searchView = dialog.findViewById(R.id.searchView);
+                searchView.clearFocus();
+
 
                 customRoute.setText("Fetching data...");
                 String url = "https://gomap-bus-tracking-system-production.up.railway.app/api/routes";
@@ -118,6 +120,19 @@ public class splashActivity extends AppCompatActivity {
                                 RouteAdapter adapter = new RouteAdapter(splashActivity.this, routes);
                                 routesList.setAdapter(adapter);
                                 customRoute.setText("Routes");
+                                searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
+                                    @Override
+                                    public boolean onQueryTextSubmit(String query) {
+                                        adapter.getFilter().filter(query);
+                                        return false;
+                                    }
+
+                                    @Override
+                                    public boolean onQueryTextChange(String newText) {
+                                        adapter.getFilter().filter(newText);
+                                        return false;
+                                    }
+                                });
                             } catch (JSONException e) {
                                 customRoute.setText("Failed to parse data");
                                 e.printStackTrace();

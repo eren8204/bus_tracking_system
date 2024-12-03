@@ -7,21 +7,26 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
+import android.widget.Filter;
+import android.widget.Filterable;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 
+import java.util.ArrayList;
 import java.util.List;
 
-public class RouteAdapter extends ArrayAdapter<Route> {
+public class RouteAdapter extends ArrayAdapter<Route> implements Filterable {
     private final Context context;
-    private final List<Route> routes;
+    private List<Route> routes;
+    private final List<Route> originalRoutes; // For holding the original list
 
     public RouteAdapter(Context context, List<Route> routes) {
         super(context, R.layout.route_item, routes);
         this.context = context;
         this.routes = routes;
+        this.originalRoutes = new ArrayList<>(routes); // Copy of the original list
     }
 
     @SuppressLint("SetTextI18n")
@@ -35,30 +40,60 @@ public class RouteAdapter extends ArrayAdapter<Route> {
 
         Route route = routes.get(position);
 
-
         TextView busNoView = convertView.findViewById(R.id.bus_no);
         TextView departureTimeView = convertView.findViewById(R.id.departure_time);
         TextView arrivalTimeView = convertView.findViewById(R.id.arrival_time);
         TextView routeView = convertView.findViewById(R.id.route);
         TextView pathView = convertView.findViewById(R.id.path);
 
-
         busNoView.setText("Bus No: " + route.getBusNo());
         departureTimeView.setText("Departure: " + route.getDepartureTime());
         arrivalTimeView.setText("Arrival: " + route.getArrivalTime());
-        pathView.setText(route.getSource()+" ➡️ "+route.getDest());
+        pathView.setText(route.getSource() + " ➡️ " + route.getDest());
         routeView.setText("Route: " + route.getRoute());
 
-        convertView.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent = new Intent(context, buslocate.class);
-                intent.putExtra("busnofromroute",route.getBusNo());
-                context.startActivity(intent);
-            }
+        convertView.setOnClickListener(v -> {
+            Intent intent = new Intent(context, buslocate.class);
+            intent.putExtra("busnofromroute", route.getBusNo());
+            context.startActivity(intent);
         });
 
         return convertView;
     }
-}
 
+    @NonNull
+    @Override
+    public Filter getFilter() {
+        return new Filter() {
+            @Override
+            protected FilterResults performFiltering(CharSequence constraint) {
+                List<Route> filteredResults = new ArrayList<>();
+                if (constraint == null || constraint.length() == 0) {
+                    filteredResults.addAll(originalRoutes);
+                } else {
+                    String filterPattern = constraint.toString().toLowerCase().trim();
+                    for (Route route : originalRoutes) {
+                        if (route.getBusNo().toLowerCase().contains(filterPattern) ||
+                                route.getRoute().toLowerCase().contains(filterPattern) ||
+                                route.getSource().toLowerCase().contains(filterPattern) ||
+                                route.getDest().toLowerCase().contains(filterPattern)) {
+                            filteredResults.add(route);
+                        }
+                    }
+                }
+
+                FilterResults results = new FilterResults();
+                results.values = filteredResults;
+                results.count = filteredResults.size();
+                return results;
+            }
+
+            @Override
+            protected void publishResults(CharSequence constraint, FilterResults results) {
+                routes.clear();
+                routes.addAll((List<Route>) results.values);
+                notifyDataSetChanged();
+            }
+        };
+    }
+}
