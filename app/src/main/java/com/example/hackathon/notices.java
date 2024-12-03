@@ -23,7 +23,8 @@ import java.util.ArrayList;
 
 public class notices extends AppCompatActivity {
 
-    private static final String BASE_URL = "https://gomap-bus-tracking-system.onrender.com/";
+
+    private static final String BASE_URL = "https://gomap-bus-tracking-system-production.up.railway.app/";
     private static final String NOTICES_URL = BASE_URL + "notices/";
     private static final String API_URL = BASE_URL + "api/notices/";
 
@@ -70,14 +71,14 @@ public class notices extends AppCompatActivity {
                             adapter.notifyDataSetChanged();
                         } catch (JSONException e) {
                             e.printStackTrace();
-                            Toast.makeText(notices.this, "Error parsing JSON", Toast.LENGTH_SHORT).show();
+                            Toast.makeText(notices.this, "Error in data", Toast.LENGTH_SHORT).show();
                         }
                     }
                 },
                 new Response.ErrorListener() {
                     @Override
                     public void onErrorResponse(VolleyError error) {
-                        Toast.makeText(notices.this, "Failed to fetch PDF names", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(notices.this, "Failed to fetch PDF name", Toast.LENGTH_SHORT).show();
                     }
                 });
         queue.add(jsonArrayRequest);

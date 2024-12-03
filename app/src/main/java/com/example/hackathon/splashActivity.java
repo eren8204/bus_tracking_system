@@ -13,6 +13,7 @@ import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
+import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -23,14 +24,23 @@ import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
 
+import com.android.volley.Request;
+import com.android.volley.RequestQueue;
+import com.android.volley.toolbox.JsonObjectRequest;
+import com.android.volley.toolbox.Volley;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
 import org.bson.Document;
 import org.bson.conversions.Bson;
 import org.bson.types.ObjectId;
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
 
 
 import java.sql.Date;
+import java.util.ArrayList;
+import java.util.List;
 
 import io.realm.Realm;
 import io.realm.mongodb.App;
@@ -72,61 +82,54 @@ public class splashActivity extends AppCompatActivity {
         checkNetworkConnectivity();
 
         route.setOnClickListener(new View.OnClickListener() {
-            @SuppressLint("SetTextI18n")
             @Override
             public void onClick(View v) {
                 Dialog dialog = new Dialog(splashActivity.this);
                 dialog.setContentView(R.layout.dialog);
                 dialog.show();
 
-                TextView custom_route = dialog.findViewById(R.id.custom_route);
-                TextView routes_data = dialog.findViewById(R.id.routes_data);
-                custom_route.setText("Fetching data...");
-                Log.d("MongoDB", "Dialog and TextView initialized");
+                TextView customRoute = dialog.findViewById(R.id.custom_route);
+                ListView routesList = dialog.findViewById(R.id.routes_list);
 
-                User userID = app.currentUser();
+                customRoute.setText("Fetching data...");
+                String url = "https://gomap-bus-tracking-system-production.up.railway.app/api/routes";
+                RequestQueue requestQueue = Volley.newRequestQueue(splashActivity.this);
 
-                if (userID != null) {
-                    MongoClient mongoClient = userID.getMongoClient("mongodb-atlas");
-                    MongoDatabase mongoDatabase = mongoClient.getDatabase("location");
-                    MongoCollection<Document> routeCollection = mongoDatabase.getCollection("routes");
-                    String routeId = "1234";
-                    Document filter = new Document("route_id", routeId);
+                JsonObjectRequest jsonObjectRequest = new JsonObjectRequest(Request.Method.GET, url, null,
+                        response -> {
+                            try {
+                                JSONArray dataArray = response.getJSONArray("data");
+                                List<Route> routes = new ArrayList<>();
 
-                    Log.d("MongoDB", "Filter created: " + filter.toJson());
+                                for (int i = 0; i < dataArray.length(); i++) {
+                                    JSONObject routeObject = dataArray.getJSONObject(i);
+                                    int id = routeObject.getInt("id");
+                                    String busNo = routeObject.getString("busNo");
+                                    String departureTime = routeObject.getString("departureTime");
+                                    String arrivalTime = routeObject.getString("arrivalTime");
+                                    String route = routeObject.getString("route");
 
-                    routeCollection.findOne(filter).getAsync(task -> {
-                        if (task.isSuccess()) {
-                            Document doc = task.get();
-                            if (doc != null) {
-                                String routeName = doc.getString("route");
-                                runOnUiThread(() -> {
-                                    custom_route.setText("Routes");
-                                    routes_data.setText("Route Name: " + routeName);
-                                    Log.d("MongoDB", "Data fetched successfully: " + routeName);
-                                });
-                            } else {
-                                runOnUiThread(() -> {
-                                    routes_data.setText("No data found for Route ID: " + routeId);
-                                    Log.d("MongoDB", "No document found for Route ID: " + routeId);
-                                });
+                                    routes.add(new Route(id, busNo, departureTime, arrivalTime, route));
+                                }
+
+                                RouteAdapter adapter = new RouteAdapter(splashActivity.this, routes);
+                                routesList.setAdapter(adapter);
+                                customRoute.setText("Routes");
+                            } catch (JSONException e) {
+                                customRoute.setText("Failed to parse data");
+                                e.printStackTrace();
                             }
-                        } else {
-                            runOnUiThread(() -> {
-                                String errorMessage = "Failed to fetch data: " + task.getError().toString();
-                                routes_data.setText(errorMessage);
-                                Log.e("MongoDB", errorMessage);
-                            });
+                        },
+                        error -> {
+                            customRoute.setText("Failed to fetch data");
+                            error.printStackTrace();
                         }
-                    });
-                } else {
-                    runOnUiThread(() -> {
-                        custom_route.setText("User not logged in");
-                        Log.e("MongoDB", "User not logged in");
-                    });
-                }
+                );
+
+                requestQueue.add(jsonObjectRequest);
             }
         });
+
 
 
         user.setOnClickListener(new View.OnClickListener() {

@@ -165,7 +165,6 @@ public class driverloc extends AppCompatActivity implements OnMapReadyCallback {
                     bustext.setVisibility(View.VISIBLE);
                     curr_bus.setVisibility(View.VISIBLE);
 
-                    showLocationNotification(running_bus, "Location tracking is active for bus " + running_bus);
                 }
             }
         });
