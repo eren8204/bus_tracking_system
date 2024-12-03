@@ -22,6 +22,7 @@ android {
     defaultConfig {
         applicationId = "com.example.hackathon"
         minSdk = 24
+        //noinspection OldTargetApi
         targetSdk = 34
         versionCode = 1
         versionName = "1.0"
@@ -52,9 +53,8 @@ dependencies {
     implementation ("com.google.android.gms:play-services-maps:18.2.0")
     implementation ("androidx.webkit:webkit:1.8.0")
     implementation ("com.google.android.gms:play-services-location:21.2.0")
-    implementation ("com.android.volley:volley:1.2.1")
-    implementation ("androidx.cardview:cardview:1.0.0")
-
+    implementation (libs.volley)
+    implementation (libs.cardview)
     implementation(libs.appcompat)
     implementation(libs.material)
     implementation(libs.activity)

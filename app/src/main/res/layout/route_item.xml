@@ -50,13 +50,22 @@
         android:text="Arrival: 00:00"
         android:textSize="16sp"
         android:textColor="@android:color/black" />
-
+    <TextView
+        android:layout_marginTop="8sp"
+        android:id="@+id/path"
+        android:textStyle="bold"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Source ➡️ Destination"
+        android:textSize="16sp"
+        android:textColor="@android:color/black" />
 
 
     <TextView
         android:id="@+id/route"
         android:layout_marginTop="8sp"
-        android:layout_width="wrap_content"
+        android:layout_marginEnd="4sp"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="Route: Hell"
         android:textStyle="bold"

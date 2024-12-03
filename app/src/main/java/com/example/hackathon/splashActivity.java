@@ -108,8 +108,10 @@ public class splashActivity extends AppCompatActivity {
                                     String departureTime = routeObject.getString("departureTime");
                                     String arrivalTime = routeObject.getString("arrivalTime");
                                     String route = routeObject.getString("route");
+                                    String source = routeObject.getString("start");
+                                    String dest = routeObject.getString("end");
 
-                                    routes.add(new Route(id, busNo, departureTime, arrivalTime, route));
+                                    routes.add(new Route(id, busNo, departureTime, arrivalTime, route, source, dest));
                                 }
 
                                 RouteAdapter adapter = new RouteAdapter(splashActivity.this, routes);

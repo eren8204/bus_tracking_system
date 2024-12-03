@@ -6,15 +6,19 @@ public class Route {
     private final String departureTime;
     private final String arrivalTime;
     private final String route;
+    private final String source;
+    private final String dest;
 
-    public Route(int id, String busNo, String departureTime, String arrivalTime, String route) {
+    public Route(int id, String busNo, String departureTime, String arrivalTime, String route, String source, String dest) {
         this.id = id;
         this.busNo = busNo;
         this.departureTime = departureTime;
         this.arrivalTime = arrivalTime;
         this.route = route;
-    }
+        this.source = source;
+        this.dest = dest;
 
+    }
     public int getId() {
         return id;
     }
@@ -34,4 +38,8 @@ public class Route {
     public String getRoute() {
         return route;
     }
+
+    public String getDest() {return dest;}
+
+    public String getSource() {return source;}
 }

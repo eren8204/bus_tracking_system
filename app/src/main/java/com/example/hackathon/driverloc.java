@@ -392,13 +392,13 @@ public class driverloc extends AppCompatActivity implements OnMapReadyCallback {
         if (myMap != null) {
             myMap.clear();
 
-            LatLng clg = new LatLng(28.47755484223689, 79.43644973862979);
-            MarkerOptions option = new MarkerOptions()
-                    .position(clg)
-                    .title("SRMS CET")
-                    .icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_CYAN));
-            myMap.addMarker(option);
-            myMap.moveCamera(CameraUpdateFactory.newLatLng(clg));
+//            LatLng clg = new LatLng(28.47755484223689, 79.43644973862979);
+//            MarkerOptions option = new MarkerOptions()
+//                    .position(clg)
+//                    .title("SRMS CET")
+//                    .icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_CYAN));
+//            myMap.addMarker(option);
+//            myMap.moveCamera(CameraUpdateFactory.newLatLng(clg));
 
             if (currentLocation != null) {
                 LatLng bly = new LatLng(currentLocation.getLatitude(), currentLocation.getLongitude());
