@@ -80,13 +80,8 @@
                         android:layout_height="wrap_content"
                         android:layout_gravity="bottom"
                         android:background="@color/grey"
-                        android:gravity="bottom">
-                        <TextView
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:padding="10dp"
-                            android:text="Bus is Running"
-                            android:gravity="bottom"/>
+                        android:gravity="bottom"
+                        android:orientation="horizontal">
                     </LinearLayout>
             </fragment>
         </androidx.cardview.widget.CardView>
