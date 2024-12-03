@@ -2,6 +2,7 @@ package com.example.hackathon;
 
 import android.annotation.SuppressLint;
 import android.content.Context;
+import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -47,6 +48,15 @@ public class RouteAdapter extends ArrayAdapter<Route> {
         arrivalTimeView.setText("Arrival: " + route.getArrivalTime());
         pathView.setText(route.getSource()+" ➡️ "+route.getDest());
         routeView.setText("Route: " + route.getRoute());
+
+        convertView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(context, buslocate.class);
+                intent.putExtra("busnofromroute",route.getBusNo());
+                context.startActivity(intent);
+            }
+        });
 
         return convertView;
     }

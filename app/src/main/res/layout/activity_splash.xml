@@ -6,9 +6,13 @@
     android:layout_height="match_parent"
     android:layout_gravity="center"
     android:orientation="vertical"
-    android:layout_margin="10sp"
     android:background="@drawable/background"
     tools:context=".splashActivity">
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:layout_margin="15sp">
 
     <ImageView
         android:id="@+id/bell"
@@ -91,7 +95,7 @@
 
     </Button>
 
-
+    </LinearLayout>
 </LinearLayout>
 
 

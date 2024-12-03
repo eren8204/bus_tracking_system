@@ -14,6 +14,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.ListView;
+import android.widget.SearchView;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -65,6 +66,7 @@ public class splashActivity extends AppCompatActivity {
     MongoDatabase mongoDatabase;
     MongoCollection<Document> mongoCollection,mongoCollection2;
     ImageView bell;
+    SearchView searchView;
 
     @SuppressLint({"MissingInflatedId", "WrongViewCast"})
     @Override
@@ -78,7 +80,6 @@ public class splashActivity extends AppCompatActivity {
         driver=findViewById(R.id.Driver);
         route=findViewById(R.id.routes);
         bell=findViewById(R.id.bell);
-
         checkNetworkConnectivity();
 
         route.setOnClickListener(new View.OnClickListener() {

@@ -1,6 +1,7 @@
 package com.example.hackathon;
 
 import android.content.Context;
+import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.Canvas;
 import android.graphics.Color;
@@ -68,7 +69,6 @@ public class buslocate extends AppCompatActivity implements OnMapReadyCallback {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_buslocate);
-
         Realm.init(this);
         app = new App(new AppConfiguration.Builder(BuildConfig.appId).build());
         user = app.currentUser();
@@ -78,6 +78,7 @@ public class buslocate extends AppCompatActivity implements OnMapReadyCallback {
             finish();
             return;
         }
+        Intent intent = getIntent();
 
         mongoClient = user.getMongoClient("mongodb-atlas");
         mongoDatabase = mongoClient.getDatabase("location");
@@ -89,6 +90,55 @@ public class buslocate extends AppCompatActivity implements OnMapReadyCallback {
         statusbar = findViewById(R.id.statusbar);
         main = findViewById(R.id.main);
         bottom_status = findViewById(R.id.bottom_status);
+
+        //automatically search bus
+        if(intent.hasExtra("busnofromroute"))
+        {
+            String bsnfr = intent.getStringExtra("busnofromroute");
+            String bsn = bsnfr;
+            busno.setText(bsn);
+            Document queryFilter = new Document().append("busno", bsn);
+            mongoCollection.findOne(queryFilter).getAsync(result -> {
+                if (result.isSuccess()) {
+                    Document resultData = result.get();
+                    if (resultData != null) {
+                        String lat = resultData.getString("lat");
+                        String lon = resultData.getString("lon");
+                        lati = Double.parseDouble(lat);
+                        longi = Double.parseDouble(lon);
+                        name = bsn;
+
+                        if (myMap != null) {
+                            myMap.clear();
+                        }
+
+                        Toast.makeText(buslocate.this, "Bus Found", Toast.LENGTH_SHORT).show();
+                        SupportMapFragment mapFragment = (SupportMapFragment) getSupportFragmentManager()
+                                .findFragmentById(R.id.map);
+                        assert mapFragment != null;
+                        mapFragment.getMapAsync(buslocate.this);
+
+                        statustext.setText("Running");
+                        statusbar.setBackgroundColor(Color.parseColor("#3EC543"));
+                        main.setBackgroundColor(Color.parseColor("#3EC543"));
+                        bottom_status.setBackgroundColor(Color.parseColor("#3EC543"));
+                    } else {
+                        statustext.setText("Not Running");
+                        statusbar.setBackgroundColor(Color.parseColor("#696B6C"));
+                        main.setBackgroundColor(Color.parseColor("#696B6C"));
+                        bottom_status.setBackgroundColor(Color.parseColor("#696B6C"));
+                        Toast.makeText(buslocate.this, "No Bus Found", Toast.LENGTH_SHORT).show();
+                        lati = 0;
+                        longi = 0;
+                        if (myMap != null) {
+                            myMap.clear();
+                        }
+                    }
+                } else {
+                    Toast.makeText(buslocate.this, "No Bus Found", Toast.LENGTH_SHORT).show();
+                }
+            });
+        }
 
         search.setOnClickListener(new View.OnClickListener() {
             @Override
