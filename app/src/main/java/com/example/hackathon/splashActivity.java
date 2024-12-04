@@ -5,6 +5,7 @@ import android.app.Dialog;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.graphics.drawable.ColorDrawable;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 import android.os.Bundle;
@@ -13,6 +14,7 @@ import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.SearchView;
 import android.widget.TextView;
@@ -42,6 +44,7 @@ import org.json.JSONObject;
 import java.sql.Date;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 
 import io.realm.Realm;
 import io.realm.mongodb.App;
@@ -82,17 +85,18 @@ public class splashActivity extends AppCompatActivity {
         checkNetworkConnectivity();
 
         route.setOnClickListener(new View.OnClickListener() {
+            @SuppressLint("SetTextI18n")
             @Override
             public void onClick(View v) {
                 Dialog dialog = new Dialog(splashActivity.this);
                 dialog.setContentView(R.layout.dialog);
+                Objects.requireNonNull(dialog.getWindow()).setBackgroundDrawable(new ColorDrawable(android.graphics.Color.TRANSPARENT));
                 dialog.show();
 
                 TextView customRoute = dialog.findViewById(R.id.custom_route);
                 ListView routesList = dialog.findViewById(R.id.routes_list);
                 SearchView searchView = dialog.findViewById(R.id.searchView);
                 searchView.clearFocus();
-
 
                 customRoute.setText("Fetching data...");
                 String url = "https://gomap-bus-tracking-system-production.up.railway.app/api/routes";

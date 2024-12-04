@@ -1,12 +1,11 @@
 <androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="wrap_content"
-    android:id="@+id/dialog_card"
+    android:layout_height="match_parent"
     xmlns:tools="http://schemas.android.com/tools"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:clipToOutline="true"
     app:cardCornerRadius="20dp"
-        app:cardElevation="10dp"
-    tools:ignore="UnusedAttribute">
+        app:cardElevation="10dp">
 
 <LinearLayout
     android:layout_width="match_parent"

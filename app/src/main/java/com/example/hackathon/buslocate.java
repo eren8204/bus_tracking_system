@@ -184,6 +184,7 @@ public class buslocate extends AppCompatActivity implements OnMapReadyCallback {
                         }
                     } else {
                         Toast.makeText(buslocate.this, "No Bus Found", Toast.LENGTH_SHORT).show();
+                        Log.d("search_error",result.getError().toString());
                     }
                 });
             }
