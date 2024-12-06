@@ -65,7 +65,7 @@ public class buslocate extends AppCompatActivity implements OnMapReadyCallback {
     MongoCollection<Document> mongoCollection;
     User user;
 
-    // handler created for reloading the marker again and again
+    // ye marker ko update kerne ke liye  lagaya hai
     private Handler handler = new Handler();
 
     @Override
