@@ -62,6 +62,8 @@ public class buslocate extends AppCompatActivity implements OnMapReadyCallback {
     App app;
     MongoClient mongoClient;
     MongoDatabase mongoDatabase;
+    public static final int time=2000;
+    private long backpressed;
     MongoCollection<Document> mongoCollection;
     User user;
 
@@ -200,6 +202,21 @@ public class buslocate extends AppCompatActivity implements OnMapReadyCallback {
                 });
             }
         });
+    }
+
+    @Override
+    public void onBackPressed() {
+
+        if (backpressed+time>System.currentTimeMillis()) {
+
+            super.onBackPressed();
+            return;
+
+        } else {
+
+            Toast.makeText(this, "press again to exit", Toast.LENGTH_SHORT).show();
+        }
+        backpressed=System.currentTimeMillis();
     }
 
     @Override

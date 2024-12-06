@@ -4,7 +4,9 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.AdapterView;
+import android.widget.ImageView;
 import android.widget.ListView;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
@@ -29,8 +31,13 @@ public class notices extends AppCompatActivity {
     private static final String API_URL = BASE_URL + "api/notices/";
 
     private ListView listView;
+    TextView fetch;
+    public static final int time=2000;
+    private long backpressed;
     private ArrayList<PdfItem> pdfItems;
     private PdfAdapter adapter;
+
+    ImageView arrowback;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -42,9 +49,22 @@ public class notices extends AppCompatActivity {
         adapter = new PdfAdapter(this, pdfItems);
         listView.setAdapter(adapter);
 
+        fetch=findViewById(R.id.fetch);
+
         // Fetch PDF name
         fetchPdfNames();
 
+
+        arrowback=findViewById(R.id.arrowback);
+
+        arrowback.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent=new Intent(notices.this, splashActivity.class);
+                startActivity(intent);
+                finish();
+            }
+        });
 
         listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
@@ -56,6 +76,21 @@ public class notices extends AppCompatActivity {
         });
     }
 
+    @Override
+    public void onBackPressed() {
+
+        if (backpressed+time>System.currentTimeMillis()) {
+
+            super.onBackPressed();
+            return;
+
+        } else {
+
+            Toast.makeText(this, "press again to exit", Toast.LENGTH_SHORT).show();
+        }
+        backpressed=System.currentTimeMillis();
+    }
+
     private void fetchPdfNames() {
         RequestQueue queue = Volley.newRequestQueue(this);
         JsonArrayRequest jsonArrayRequest = new JsonArrayRequest(Request.Method.GET, NOTICES_URL, null,
@@ -63,6 +98,7 @@ public class notices extends AppCompatActivity {
                     @Override
                     public void onResponse(JSONArray response) {
                         try {
+                            fetch.setVisibility(View.GONE);
                             for (int i = 0; i < response.length(); i++) {
                                 String fileName = response.getJSONObject(i).getString("file");
                                 String addedDate = response.getJSONObject(i).getString("addedDate");

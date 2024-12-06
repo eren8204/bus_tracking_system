@@ -65,6 +65,8 @@ public class splashActivity extends AppCompatActivity {
     Button driver;
     Button route;
     String Appid = BuildConfig.appId;
+    public static final int time=2000;
+    private long backpressed;
     App app;
     MongoClient mongoClient;
     MongoDatabase mongoDatabase;
@@ -173,6 +175,7 @@ public class splashActivity extends AppCompatActivity {
                             Intent intent=new Intent(splashActivity.this, buslocate.class);
                             startActivity(intent);
                             finish();
+
                         }
                         else
                         {
@@ -196,8 +199,24 @@ public class splashActivity extends AppCompatActivity {
             public void onClick(View v) {
                 Intent intent = new Intent(splashActivity.this, notices.class);
                 startActivity(intent);
+                finish();
             }
         });
+    }
+
+    @Override
+    public void onBackPressed() {
+
+        if (backpressed+time>System.currentTimeMillis()) {
+
+            super.onBackPressed();
+            return;
+
+        } else {
+
+            Toast.makeText(this, "press again to exit", Toast.LENGTH_SHORT).show();
+        }
+        backpressed=System.currentTimeMillis();
     }
     private void checkNetworkConnectivity() {
         ConnectivityManager connectivityManager = (ConnectivityManager) getSystemService(Context.CONNECTIVITY_SERVICE);

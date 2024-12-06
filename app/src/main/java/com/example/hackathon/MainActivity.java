@@ -6,6 +6,7 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.Toast;
 
 import androidx.activity.EdgeToEdge;
@@ -31,6 +32,10 @@ public class MainActivity extends AppCompatActivity {
     Button loginbtn;
     EditText loginphone,loginpass;
     private String Appid = BuildConfig.appId;
+
+    public static final int time=2000;
+    private long backpressed;
+    ImageView arrowback;
     App app;
     @SuppressLint("MissingInflatedId")
     @Override
@@ -44,6 +49,20 @@ public class MainActivity extends AppCompatActivity {
         loginpass = findViewById(R.id.loginpass);
         app = new App(new AppConfiguration.Builder(Appid).build());
         User user = app.currentUser();
+
+
+
+
+        arrowback=findViewById(R.id.arrowback);
+
+        arrowback.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent=new Intent(MainActivity.this, splashActivity.class);
+                startActivity(intent);
+                finish();
+            }
+        });
         loginbtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -70,5 +89,20 @@ public class MainActivity extends AppCompatActivity {
                 }
             }
         });
+    }
+
+    @Override
+    public void onBackPressed() {
+
+        if (backpressed+time>System.currentTimeMillis()) {
+
+            super.onBackPressed();
+            return;
+
+        } else {
+
+            Toast.makeText(this, "press again to exit", Toast.LENGTH_SHORT).show();
+        }
+        backpressed=System.currentTimeMillis();
     }
 }

@@ -6,19 +6,51 @@
     android:background="@drawable/background"
     tools:context=".notices">
 
+<LinearLayout
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="horizontal"
+    android:padding="10sp"
+    >
+
+    <ImageView
+        android:id="@+id/arrowback"
+        android:layout_width="40sp"
+        android:layout_height="50sp"
+        android:layout_gravity="left"
+        android:src="@drawable/arrow_2"
+
+        >
+
+    </ImageView>
     <TextView
-        android:layout_marginTop="20sp"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="NOTICES"
         android:textSize="30sp"
+        android:layout_gravity="center"
+        android:layout_marginRight="18sp"
         android:gravity="center"
         android:textColor="@color/black"
         android:textStyle="bold"
 
         >
+    </TextView>
+</LinearLayout>
+
+    <TextView
+        android:id="@+id/fetch"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Fetching data..."
+        android:visibility="visible"
+        android:gravity="center"
+        android:layout_marginTop="10sp"
+        android:textColor="@color/black"
+        android:textSize="25sp">
 
     </TextView>
+
     <ListView
         android:layout_marginTop="30sp"
         android:id="@+id/listView"

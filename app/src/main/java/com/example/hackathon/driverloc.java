@@ -82,8 +82,10 @@ public class driverloc extends AppCompatActivity implements OnMapReadyCallback{
     GoogleMap googleMap;
     ImageView arrowback;
     LinearLayout statusbar,bottom_status;
+    public static final int time=2000;
+    private long backpressed;
     LinearLayoutCompat main;
-    //    ImageView alert;
+
     private static final long UPDATE_INTERVAL = 3000;
     private static final float SMALLEST_DISPLACEMENT = 10f;
 
@@ -102,6 +104,9 @@ public class driverloc extends AppCompatActivity implements OnMapReadyCallback{
         bottom_status = findViewById(R.id.bottom_status);
         curr_bus = findViewById(R.id.curr_bus);
         bustext = findViewById(R.id.bustext);
+
+
+
 
 
         arrowback=findViewById(R.id.arrowback_driver);
@@ -305,6 +310,21 @@ public class driverloc extends AppCompatActivity implements OnMapReadyCallback{
                 }
             }
         });
+    }
+
+    @Override
+    public void onBackPressed() {
+
+        if (backpressed+time>System.currentTimeMillis()) {
+
+            super.onBackPressed();
+            return;
+
+        } else {
+
+            Toast.makeText(this, "press again to exit", Toast.LENGTH_SHORT).show();
+        }
+        backpressed=System.currentTimeMillis();
     }
     Handler handler = new Handler();
     Runnable updateLocationRunnable = new Runnable() {
