@@ -32,7 +32,7 @@
             android:paddingStart="16dp"
             android:paddingEnd="16dp">
 
-            <!-- File Name -->
+
             <TextView
                 android:id="@+id/fileNameTextView"
                 android:layout_width="wrap_content"

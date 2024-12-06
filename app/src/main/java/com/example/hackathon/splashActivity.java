@@ -5,6 +5,7 @@ import android.app.Dialog;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
@@ -93,9 +94,16 @@ public class splashActivity extends AppCompatActivity {
                 Objects.requireNonNull(dialog.getWindow()).setBackgroundDrawable(new ColorDrawable(android.graphics.Color.TRANSPARENT));
                 dialog.show();
 
+                ImageView closebtn=dialog.findViewById(R.id.close);
                 TextView customRoute = dialog.findViewById(R.id.custom_route);
                 ListView routesList = dialog.findViewById(R.id.routes_list);
                 SearchView searchView = dialog.findViewById(R.id.searchView);
+
+                closebtn.setOnClickListener(view -> dialog.dismiss());
+
+
+
+
                 searchView.clearFocus();
 
                 customRoute.setText("Fetching data...");
@@ -164,6 +172,7 @@ public class splashActivity extends AppCompatActivity {
                         if(result.isSuccess()){
                             Intent intent=new Intent(splashActivity.this, buslocate.class);
                             startActivity(intent);
+                            finish();
                         }
                         else
                         {
@@ -178,6 +187,7 @@ public class splashActivity extends AppCompatActivity {
             public void onClick(View v) {
                 Intent intent=new Intent(splashActivity.this, MainActivity.class);
                 startActivity(intent);
+                finish();
             }
         });
 

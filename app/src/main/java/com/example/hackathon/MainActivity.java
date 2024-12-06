@@ -61,6 +61,7 @@ public class MainActivity extends AppCompatActivity {
                                 Intent intent = new Intent(MainActivity.this, driverloc.class);
                                 intent.putExtra("driver_id",id);
                                 startActivity(intent);
+                                finish();
                             } else {
                                 Toast.makeText(MainActivity.this, "Try again", Toast.LENGTH_SHORT).show();
                             }

@@ -23,6 +23,7 @@ import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -84,6 +85,7 @@ public class driverloc extends AppCompatActivity implements OnMapReadyCallback {
     String name;
     GoogleMap googleMap;
     LinearLayout statusbar, bottom_status;
+    ImageView arrowback;
     LinearLayoutCompat main;
     private static final long UPDATE_INTERVAL = 7000;
     private static final float SMALLEST_DISPLACEMENT = 10f;
@@ -107,8 +109,16 @@ public class driverloc extends AppCompatActivity implements OnMapReadyCallback {
         bottom_status = findViewById(R.id.bottom_status);
         curr_bus = findViewById(R.id.curr_bus);
         bustext = findViewById(R.id.bustext);
+        arrowback=findViewById(R.id.arrowback_driver);
 
-
+        arrowback.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent=new Intent(driverloc.this, splashActivity.class);
+                startActivity(intent);
+                finish();
+            }
+        });
         createNotificationChannel();
 
         Intent intent = getIntent();

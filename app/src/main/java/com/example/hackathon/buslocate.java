@@ -12,6 +12,7 @@ import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -52,6 +53,8 @@ public class buslocate extends AppCompatActivity implements OnMapReadyCallback {
     private EditText busno;
     private TextView statustext;
     private LinearLayout statusbar, bottom_status;
+    ImageView arrowback;
+
     private LinearLayout main;
     private float previousZoomLevel = 0f;
     private MarkerOptions busMarkerOptions;
@@ -90,7 +93,15 @@ public class buslocate extends AppCompatActivity implements OnMapReadyCallback {
         statusbar = findViewById(R.id.statusbar);
         main = findViewById(R.id.main);
         bottom_status = findViewById(R.id.bottom_status);
-
+        arrowback=findViewById(R.id.arrowback_user);
+        arrowback.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent=new Intent(buslocate.this, splashActivity.class);
+                startActivity(intent);
+                finish();
+            }
+        });
         //automatically search bus
         if(intent.hasExtra("busnofromroute"))
         {
