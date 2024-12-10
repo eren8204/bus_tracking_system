@@ -1,6 +1,7 @@
 package com.example.hackathon;
 
 import android.annotation.SuppressLint;
+import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.view.LayoutInflater;
@@ -55,7 +56,11 @@ public class RouteAdapter extends ArrayAdapter<Route> implements Filterable {
         convertView.setOnClickListener(v -> {
             Intent intent = new Intent(context, buslocate.class);
             intent.putExtra("busnofromroute", route.getBusNo());
+            intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_NEW_TASK);
             context.startActivity(intent);
+            if (context instanceof Activity) {
+                ((Activity) context).finish();
+            }
 
         });
 
