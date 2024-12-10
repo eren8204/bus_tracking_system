@@ -82,7 +82,7 @@ public class driverloc extends AppCompatActivity implements OnMapReadyCallback{
     GoogleMap googleMap;
     ImageView arrowback;
     LinearLayout statusbar,bottom_status;
-    public static final int time=2000;
+    public static final int time=1000;
     private long backpressed;
     LinearLayoutCompat main;
 
@@ -312,19 +312,12 @@ public class driverloc extends AppCompatActivity implements OnMapReadyCallback{
         });
     }
 
+    @SuppressLint("MissingSuperCall")
     @Override
     public void onBackPressed() {
-
-        if (backpressed+time>System.currentTimeMillis()) {
-
-            super.onBackPressed();
-            return;
-
-        } else {
-
-            Toast.makeText(this, "press again to exit", Toast.LENGTH_SHORT).show();
-        }
-        backpressed=System.currentTimeMillis();
+        Intent intent = new Intent(this, splashActivity.class);
+        startActivity(intent);
+        finish();
     }
     Handler handler = new Handler();
     Runnable updateLocationRunnable = new Runnable() {

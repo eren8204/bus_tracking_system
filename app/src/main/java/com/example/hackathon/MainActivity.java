@@ -91,18 +91,11 @@ public class MainActivity extends AppCompatActivity {
         });
     }
 
+    @SuppressLint("MissingSuperCall")
     @Override
     public void onBackPressed() {
-
-        if (backpressed+time>System.currentTimeMillis()) {
-
-            super.onBackPressed();
-            return;
-
-        } else {
-
-            Toast.makeText(this, "press again to exit", Toast.LENGTH_SHORT).show();
-        }
-        backpressed=System.currentTimeMillis();
+        Intent intent = new Intent(this, splashActivity.class);
+        startActivity(intent);
+        finish();
     }
 }

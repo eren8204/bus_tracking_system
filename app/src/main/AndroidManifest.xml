@@ -25,14 +25,20 @@
         android:theme="@style/Theme.Hackathon"
         tools:targetApi="31">
         <activity
-            android:name=".splashActivity"
+            android:name=".firstactivity"
             android:exported="true"
-            android:screenOrientation="portrait" >
+            android:screenOrientation="portrait">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
+        </activity>
+        <activity
+            android:name=".splashActivity"
+            android:exported="false"
+            android:screenOrientation="portrait">
+
         </activity>
         <activity
             android:name=".PdfViewerActivity"
@@ -46,7 +52,6 @@
             android:name=".notices"
             android:exported="false"
             android:screenOrientation="portrait" />
-
         <activity
             android:name=".buslocate"
             android:exported="false"

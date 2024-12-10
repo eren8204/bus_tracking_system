@@ -56,6 +56,7 @@ public class RouteAdapter extends ArrayAdapter<Route> implements Filterable {
             Intent intent = new Intent(context, buslocate.class);
             intent.putExtra("busnofromroute", route.getBusNo());
             context.startActivity(intent);
+
         });
 
         return convertView;

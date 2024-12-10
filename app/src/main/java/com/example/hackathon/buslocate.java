@@ -1,5 +1,6 @@
 package com.example.hackathon;
 
+import android.annotation.SuppressLint;
 import android.content.Context;
 import android.content.Intent;
 import android.graphics.Bitmap;
@@ -62,7 +63,7 @@ public class buslocate extends AppCompatActivity implements OnMapReadyCallback {
     App app;
     MongoClient mongoClient;
     MongoDatabase mongoDatabase;
-    public static final int time=2000;
+    public static final int time=1000;
     private long backpressed;
     MongoCollection<Document> mongoCollection;
     User user;
@@ -204,19 +205,12 @@ public class buslocate extends AppCompatActivity implements OnMapReadyCallback {
         });
     }
 
+    @SuppressLint("MissingSuperCall")
     @Override
     public void onBackPressed() {
-
-        if (backpressed+time>System.currentTimeMillis()) {
-
-            super.onBackPressed();
-            return;
-
-        } else {
-
-            Toast.makeText(this, "press again to exit", Toast.LENGTH_SHORT).show();
-        }
-        backpressed=System.currentTimeMillis();
+        Intent intent = new Intent(this, splashActivity.class);
+        startActivity(intent);
+        finish();
     }
 
     @Override

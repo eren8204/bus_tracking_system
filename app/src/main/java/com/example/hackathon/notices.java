@@ -1,5 +1,6 @@
 package com.example.hackathon;
 
+import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
@@ -76,21 +77,13 @@ public class notices extends AppCompatActivity {
         });
     }
 
+    @SuppressLint("MissingSuperCall")
     @Override
     public void onBackPressed() {
-
-        if (backpressed+time>System.currentTimeMillis()) {
-
-            super.onBackPressed();
-            return;
-
-        } else {
-
-            Toast.makeText(this, "press again to exit", Toast.LENGTH_SHORT).show();
-        }
-        backpressed=System.currentTimeMillis();
+        Intent intent = new Intent(this, splashActivity.class);
+        startActivity(intent);
+        finish();
     }
-
     private void fetchPdfNames() {
         RequestQueue queue = Volley.newRequestQueue(this);
         JsonArrayRequest jsonArrayRequest = new JsonArrayRequest(Request.Method.GET, NOTICES_URL, null,

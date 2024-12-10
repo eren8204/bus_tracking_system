@@ -50,6 +50,7 @@ realm {
     isSyncEnabled = true
 }
 dependencies {
+    implementation ("com.airbnb.android:lottie:6.0.0")
     implementation ("com.google.android.gms:play-services-maps:18.2.0")
     implementation ("androidx.webkit:webkit:1.8.0")
     implementation ("com.google.android.gms:play-services-location:21.2.0")
