@@ -7,12 +7,22 @@
     tools:context=".firstactivity"
     android:gravity="center">
 
-    <com.airbnb.lottie.LottieAnimationView
-        android:id="@+id/lottieAnimationView"
-        android:layout_width="match_parent"
+<!--    <com.airbnb.lottie.LottieAnimationView-->
+<!--        android:id="@+id/lottieAnimationView"-->
+<!--        android:layout_width="match_parent"-->
+<!--        android:layout_height="300sp"-->
+<!--        app:lottie_rawRes="@raw/animation"-->
+<!--        app:lottie_loop="true"-->
+<!--        app:lottie_autoPlay="true" />-->
+
+
+
+    <ImageView
+        android:id="@+id/gifImageView"
+        android:layout_width="300sp"
         android:layout_height="300sp"
-        app:lottie_rawRes="@raw/animation"
-        app:lottie_loop="true"
-        app:lottie_autoPlay="true" />
+        >
+
+    </ImageView>
 
 </LinearLayout>
